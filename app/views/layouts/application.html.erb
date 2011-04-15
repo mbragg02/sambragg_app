@@ -2,13 +2,31 @@
 <html>
 <head>
   <title>SambraggApp</title>
-  <%= stylesheet_link_tag :all %>
+  <%= render 'layouts/stylesheets' %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
 <body>
+	<div class="container">
+		<header>
+			<h1>Sam Bragg</h1>
+			<nav class="round">
+				<ul>
+					<li><%= link_to "Home", '#' %></li>
+					<li><%= link_to "About", '#' %></li>
+       				<li><%= link_to "Gigs", '#' %></li>
+					<li><%= link_to "Music", '#' %></li>
+					<li><%= link_to "Contact", '#' %></li>
+				</ul>
+			</nav>
+		</header>
+		<section class="round">
+			<%= yield %>
+		</section>
+		<%= render 'layouts/footer' %>
+			
+	</div>
 
-<%= yield %>
 
 </body>
 </html>
