@@ -1,4 +1,6 @@
 SambraggApp::Application.routes.draw do
+  resources :gigs
+
   resources :blogs
 
   # The priority is based upon order of creation:

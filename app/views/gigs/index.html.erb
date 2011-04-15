@@ -1,0 +1,45 @@
+<%= link_to 'New Gig', new_gig_path %>
+<%#= @time.strftime("%A %d %b %Y @ %I:%M %p")  %>
+
+<ul class="gigs_feed">
+<% if @new_gigs.blank? %> 
+<h1>No upcoming gigs</h1>
+<% else%>
+<h1>Upcoming gigs</h1>
+<% @new_gigs.reverse.each do |gig| %>
+	<li>
+	<ul class="gigs_feed_gig">
+	<li><%= link_to gig.name, gig %></li>
+	<li><%= gig.gigdate.strftime("%A %d %b %Y / %I:%M %p") %></li>
+    <li><%= gig.address %></li>
+    <li><%= gig.lat %></li>
+    <li><%= gig.lng %></li>
+    <%= link_to 'Edit', edit_gig_path(gig) %> |
+    <%= link_to 'Destroy', gig, :confirm => 'Are you sure?', :method => :delete %>
+	</ul>
+	</li>
+<% end %>
+<% end %>
+</ul><br />
+
+
+
+<h1>Past gigs</h1>
+<ul class="gigs_feed">
+<% @old_gigs.reverse.each do |gig| %>
+	<li>
+	<ul class="gigs_feed_gig">
+	<li><%= link_to gig.name, gig %></li>
+	<li><%= gig.gigdate.strftime("%A %d %b %Y / %I:%M %p") %></li>
+    <li><%= gig.address %></li>
+    <li><%= gig.lat %></li>
+    <li><%= gig.lng %></li>
+    <%= link_to 'Edit', edit_gig_path(gig) %> |
+    <%= link_to 'Destroy', gig, :confirm => 'Are you sure?', :method => :delete %>
+	</ul>
+	</li>
+<% end %>
+
+</ul>
+<br />
+

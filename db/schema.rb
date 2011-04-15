@@ -10,11 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110414225827) do
+ActiveRecord::Schema.define(:version => 20110415092635) do
 
   create_table "blogs", :force => true do |t|
     t.string   "title"
     t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "gigs", :force => true do |t|
+    t.string   "name"
+    t.text     "address"
+    t.datetime "gigdate"
+    t.float    "lat"
+    t.float    "lng"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
