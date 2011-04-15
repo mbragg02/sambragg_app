@@ -27,6 +27,17 @@ section h1 {
   font-size: 200%;
 }
 
+
+/* News feed */
+
+ul.news_feed {
+	list-style-type: none; 
+}
+ul.news_feed_post {
+	padding-top: 10px ;
+	padding-bottom: 20px ;
+}
+
 /* Links */
 
 a {
@@ -97,4 +108,4 @@ footer {
 
 footer nav {
   float: none;
-}
+}	

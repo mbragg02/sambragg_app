@@ -1,25 +1,18 @@
 <h1>News</h1>
+<%= link_to 'New Post', new_blog_path %>
+<ul class="news_feed">
+<% @blogs.reverse.each do |blog| %>
+<li>
+	<ul class="news_feed news_feed_post">
+    <li><%= link_to blog.title, blog %></li>
+	<li><%= blog.created_at.strftime("%A %d %b %Y") %></li>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Content</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @blogs.each do |blog| %>
-  <tr>
-    <td><%= blog.title %></td>
-    <td><%= blog.content %></td>
-    <td><%= link_to 'Show', blog %></td>
-    <td><%= link_to 'Edit', edit_blog_path(blog) %></td>
-    <td><%= link_to 'Destroy', blog, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+    <li><%= blog.content %></li>
+    <%= link_to 'Edit', edit_blog_path(blog) %>
+    <%= link_to 'Destroy', blog, :confirm => 'Are you sure?', :method => :delete %>
+	</ul>
+</li>
 <% end %>
-</table>
+</ul>
 
-<br />
 
-<%= link_to 'New Blog', new_blog_path %>
