@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>SambraggApp</title>
+  <title>sambragg.co.uk | <%= @head_title %></title>
   <%= render 'layouts/stylesheets' %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
+
+<script type="text/javascript"
+    src="http://maps.google.com/maps/api/js?sensor=false">
+</script>
+
 </head>
-<body>
+<body onload="initialize()">
 	<div class="container">
 		<header>
-			<h1>Sam Bragg</h1>
-			<nav class="round">
-				<ul>
-					<li><%= link_to "Home", blogs_path %></li>
-					<li><%= link_to "About", '#' %></li>
-       				<li><%= link_to "Gigs", gigs_path %></li>
-					<li><%= link_to "Music", '#' %></li>
-					<li><%= link_to "Photos", '#' %></li>
-					<li><%= link_to "Contact", '#' %></li>
-				</ul>
-			</nav>
+			<%= link_to image_tag("sambragg_logo.png", :alt => "Sam Bragg"), root_path %>		
+			
+			
 		</header>
+		<nav class="round">
+			<ul>
+				<li><%= link_to "News", root_path %></li>
+				<li><%= link_to "About", about_path %></li>
+   				<li><%= link_to "Gigs", gigs_path %></li>
+				<li><%= link_to "Music", '#' %></li>
+				<li><%= link_to "Photos", '#' %></li>
+				<li><%= link_to "Contact", '#' %></li>
+			</ul>
+		</nav>
 		<section class="round">
 			<%= yield %>
 		</section>
-		<%= render 'layouts/footer' %>
+		<%#= render 'layouts/footer' %>
 			
 	</div>
 

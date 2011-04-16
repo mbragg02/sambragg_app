@@ -1,13 +1,37 @@
-<h1><b>@ <%= @gig.name %></b></h1>
+<div id="gig_listing">
+	<h1><%= link_to 'Gig listing', gigs_path %> / <b><%= @gig.name %></b> <%= link_to '[edit]', edit_gig_path(@gig) %></h1>
+	<h3><%= @gig.address %></h3>
+	<h3><%= @gig.gigdate.strftime("%A %d %b %Y") %></h3>
+	<h3>@<%= @gig.gigdate.strftime("%I:%M %p") %></h3>
+	
+	
+</div>
+<%= render 'blogs/social_links' %>
 
-<h3>
-  <%= @gig.address %>
-</h3>
-
-<h3><%= @gig.gigdate.strftime("%A %d %b %Y") %></h3>
-<h3><%= @gig.gigdate.strftime("%I:%M %p") %></h3>
 <p id="notice"><%= notice %></p>
 
+<div class="map_container round">
+<div id="map_canvas" style="width:100%; height:300px"></div>
+</div>
 
-<%= link_to 'Edit', edit_gig_path(@gig) %> |
-<%= link_to 'Back', gigs_path %>
+
+
+<script type="text/javascript">
+
+var myLatlng = new google.maps.LatLng(<%= @gig.lat %>, <%= @gig.lng %>);
+var myOptions = {
+  zoom: 13,
+  center: myLatlng,
+  mapTypeId: google.maps.MapTypeId.ROADMAP
+}
+
+var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+var marker = new google.maps.Marker({
+    position: myLatlng,
+    map: map,
+    title:"<%= @gig.name %>"
+});
+
+
+</script>

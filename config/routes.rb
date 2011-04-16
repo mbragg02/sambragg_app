@@ -1,7 +1,9 @@
 SambraggApp::Application.routes.draw do
+  root :to => "blogs#index"
   resources :gigs
 
   resources :blogs
+  match 'about' => 'about#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

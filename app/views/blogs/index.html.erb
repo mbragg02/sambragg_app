@@ -1,16 +1,24 @@
-<h1>News</h1>
-<%= link_to 'New Post', new_blog_path %>
+<div id="home_art">
+	<%= image_tag("home_art.jpg", :alt => "Home art") %>
+</div>
+
 <ul class="news_feed">
+	<h1>News</h1>
+	<div class="admin_options">
+		<h4><%= link_to '[New Post]', new_blog_path %></h4>
+	</div>
 <% @blogs.reverse.each do |blog| %>
 <li>
-	<ul class="news_feed news_feed_post">
-    <li><%= link_to blog.title, blog %></li>
-	<li><%= blog.created_at.strftime("%A %d %b %Y") %></li>
-
-    <li><%= blog.content %></li>
-    <%= link_to 'Edit', edit_blog_path(blog) %>
-    <%= link_to 'Destroy', blog, :confirm => 'Are you sure?', :method => :delete %>
+	<ul class="news_feed news_feed_post">	
+    <li><h1><%= link_to blog.title, blog %></h1></li>
+	<li><h4><%= blog.created_at.strftime("%A %d %b %Y") %></h4></li>
+    <li><p><%= simple_format(auto_link(blog.content)) %></p></li>
+	<div class="admin_options">
+		<h4><%= link_to '[Edit]', edit_blog_path(blog) %>
+	    <%= link_to '[Destroy]', blog, :confirm => 'Are you sure?', :method => :delete %></h4>
+	</div>
 	</ul>
+	
 </li>
 <% end %>
 </ul>

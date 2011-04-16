@@ -1,23 +1,31 @@
-<%= link_to 'New Gig', new_gig_path %>
 <%#= @time.strftime("%A %d %b %Y @ %I:%M %p")  %>
 
 <ul class="gigs_feed">
 <% if @new_gigs.blank? %> 
 <h1>No upcoming gigs</h1>
+<div class="admin_options">
+	<h4><%= link_to '[New Gig]', new_gig_path %></h4>
+</div>
+
 <% else%>
 <h1>Upcoming gigs</h1>
+<div class="admin_options">
+	<h4><%= link_to '[New Gig]', new_gig_path %></h4>
+</div>
+
 <% @new_gigs.reverse.each do |gig| %>
-	<li>
-	<ul class="gigs_feed_gig">
-	<li><%= link_to gig.name, gig %></li>
-	<li><%= gig.gigdate.strftime("%A %d %b %Y / %I:%M %p") %></li>
-    <li><%= gig.address %></li>
-    <li><%= gig.lat %></li>
-    <li><%= gig.lng %></li>
-    <%= link_to 'Edit', edit_gig_path(gig) %> |
-    <%= link_to 'Destroy', gig, :confirm => 'Are you sure?', :method => :delete %>
-	</ul>
-	</li>
+<li>
+<ul class="gigs_feed_gig <%= cycle('list-line-even', 'list-line-odd') %>">		
+<li><h2><%= link_to gig.name, gig %></h2></li>
+<li><h4><%= gig.gigdate.strftime("%A %d %b %Y / %I:%M %p") %></h4></li>
+<li><p><%= gig.address %></p></li>
+
+<div class="admin_options">
+	<h4><%= link_to '[Edit]', edit_gig_path(gig) %>
+    <%= link_to '[Destroy]', gig, :confirm => 'Are you sure?', :method => :delete %></h4>
+</div>
+</ul>
+</li>
 <% end %>
 <% end %>
 </ul><br />
@@ -28,14 +36,15 @@
 <ul class="gigs_feed">
 <% @old_gigs.reverse.each do |gig| %>
 	<li>
-	<ul class="gigs_feed_gig">
-	<li><%= link_to gig.name, gig %></li>
-	<li><%= gig.gigdate.strftime("%A %d %b %Y / %I:%M %p") %></li>
-    <li><%= gig.address %></li>
-    <li><%= gig.lat %></li>
-    <li><%= gig.lng %></li>
-    <%= link_to 'Edit', edit_gig_path(gig) %> |
-    <%= link_to 'Destroy', gig, :confirm => 'Are you sure?', :method => :delete %>
+	<ul class="gigs_feed_gig <%= cycle('list-line-even', 'list-line-odd') %>">		
+	<li><h2><%= link_to gig.name, gig %></h2></li>
+	<li><h4><%= gig.gigdate.strftime("%A %d %b %Y / %I:%M %p") %></h4></li>
+    <li><p><%= gig.address %></p></li>
+    
+	<div class="admin_options">
+		<h4><%= link_to '[Edit]', edit_gig_path(gig) %>
+	    <%= link_to '[Destroy]', gig, :confirm => 'Are you sure?', :method => :delete %></h4>
+	</div>
 	</ul>
 	</li>
 <% end %>

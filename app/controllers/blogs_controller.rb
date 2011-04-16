@@ -2,8 +2,9 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.xml
   def index
+    @head_title = "News"
     @blogs = Blog.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @blogs }
@@ -13,7 +14,9 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.xml
   def show
+    
     @blog = Blog.find(params[:id])
+    @head_title = "News #{@blog.created_at.strftime("%d/%m/%y")}"
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,6 +27,7 @@ class BlogsController < ApplicationController
   # GET /blogs/new
   # GET /blogs/new.xml
   def new
+    @head_title = "New post"
     @blog = Blog.new
 
     respond_to do |format|
@@ -34,6 +38,7 @@ class BlogsController < ApplicationController
 
   # GET /blogs/1/edit
   def edit
+    @head_title = "Edit post"
     @blog = Blog.find(params[:id])
   end
 

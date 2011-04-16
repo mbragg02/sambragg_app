@@ -2,6 +2,7 @@ class GigsController < ApplicationController
   # GET /gigs
   # GET /gigs.xml
   def index
+    @head_title = "Gigs"
     all_gigs = Gig.all
     
     @old_gigs = Gig.find(:all,
@@ -21,6 +22,8 @@ class GigsController < ApplicationController
   # GET /gigs/1.xml
   def show
     @gig = Gig.find(params[:id])
+    @head_title = "Gig @ #{@gig.name}"
+    
 
     respond_to do |format|
       format.html # show.html.erb
@@ -31,27 +34,61 @@ class GigsController < ApplicationController
   # GET /gigs/new
   # GET /gigs/new.xml
   def new
+    @head_title = "New Gig"
     @gig = Gig.new
+    
+    
 
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @gig }
     end
   end
+  
+  def geocode
+    
+    #geocode_url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{address}&sensor=false"
+    
+    
+    respond_to do |format|
+      if @gig.save
+        format.html { redirect_to(@gig, :notice => 'Gig was successfully created.') }
+        format.xml  { render :xml => @gig, :status => :created, :location => @gig }
+        format.js
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @gig.errors, :status => :unprocessable_entity }
+        format.js
+      end
+    end
+  end
 
   # GET /gigs/1/edit
   def edit
+    @head_title = "Edit Gig"
     @gig = Gig.find(params[:id])
   end
 
   # POST /gigs
   # POST /gigs.xml
   def create
+     require 'open-uri'
+      require 'json'
+      
     @gig = Gig.new(params[:gig])
+    
+    address = params[:gig][:address]
+    geocode_url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{address.gsub(/ /,'+')}&sensor=false"
+    geocode_json = open(geocode_url).read
+    geocode_parsed = JSON.parse(geocode_json)
+    geo_lat = geocode_parsed["results"][0]["geometry"]["location"]["lat"]
+    geo_lng = geocode_parsed["results"][0]["geometry"]["location"]["lng"]
+    params[:gig][:lat] = geo_lat
+    params[:gig][:lng] = geo_lng
 
     respond_to do |format|
-      if @gig.save
-        format.html { redirect_to(@gig, :notice => 'Gig was successfully created.') }
+      if @gig.update_attributes(params[:gig])
+        format.html { redirect_to(@gig, :notice => "Gig was successfully created.") }
         format.xml  { render :xml => @gig, :status => :created, :location => @gig }
       else
         format.html { render :action => "new" }
@@ -63,7 +100,20 @@ class GigsController < ApplicationController
   # PUT /gigs/1
   # PUT /gigs/1.xml
   def update
+    
+    require 'open-uri'
+    require 'json'
+      
     @gig = Gig.find(params[:id])
+    
+    address = params[:gig][:address]
+    geocode_url = "http://maps.googleapis.com/maps/api/geocode/json?address=#{address.gsub(/ /,'+')}&sensor=false"
+    geocode_json = open(geocode_url).read
+    geocode_parsed = JSON.parse(geocode_json)
+    geo_lat = geocode_parsed["results"][0]["geometry"]["location"]["lat"]
+    geo_lng = geocode_parsed["results"][0]["geometry"]["location"]["lng"]
+    params[:gig][:lat] = geo_lat
+    params[:gig][:lng] = geo_lng
 
     respond_to do |format|
       if @gig.update_attributes(params[:gig])
