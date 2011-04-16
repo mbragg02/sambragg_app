@@ -1,3 +1,7 @@
+/* @override http://localhost:3000/stylesheets/custom.css?1302922760 */
+
+/* @override http://localhost:3000/stylesheets/custom.css?1302917243 */
+
 /* @override http://localhost:3000/stylesheets/custom.css?1302914292 */
 
 /* @override http://localhost:3000/stylesheets/custom.css?1302910140 */
@@ -102,10 +106,25 @@ section h1 {
 
 .admin_options {
 	position:absolute;
-	padding:10px;
 	right: 0px;
 	top: 0px;
 }
+
+div.admin_options_gig {
+	position:absolute;
+	right: 8px;
+	top: 8px;
+	
+}
+
+p#notice {
+	width: 750px;
+	height:1.5em;
+	padding: 10px;
+	
+}
+
+
 ul.news_feed {
 	width: 500px;
 	position: absolute;
@@ -115,9 +134,11 @@ ul.news_feed {
 	right: 0;
 }
 ul.news_feed_post {
-	padding-top: 20px;
-	padding-bottom: 20px;
+	display: inline-block;
 	position: relative;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	clear: right;
 }
 
 ul.news_feed_post h1 {
@@ -164,7 +185,7 @@ div#map_canvas {
 }
 
 .map_container {
-	background-color: #222;
+	background-color: #111;
 	width: 750px;
 	padding: 10px;
 }
@@ -294,4 +315,13 @@ div#home_art {
 	position: absolute;
 	left: 0;
 	top: 4px;
+}
+
+nav.pagination {
+	width: auto;
+	padding-left: 10px;
+}
+
+span.page.current {
+	color: #eee;
 }

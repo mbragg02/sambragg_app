@@ -3,7 +3,10 @@ class BlogsController < ApplicationController
   # GET /blogs.xml
   def index
     @head_title = "News"
-    @blogs = Blog.all
+    #@blogs = Blog.page(1)
+    @blogs = Blog.order("id DESC").page(params[:page]).per(5)
+    
+    
     
     respond_to do |format|
       format.html # index.html.erb

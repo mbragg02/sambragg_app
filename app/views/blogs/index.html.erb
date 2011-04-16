@@ -7,7 +7,9 @@
 	<div class="admin_options">
 		<h4><%= link_to '[New Post]', new_blog_path %></h4>
 	</div>
-<% @blogs.reverse.each do |blog| %>
+	
+	<%= paginate @blogs %>
+<% @blogs.each do |blog| %>
 <li>
 	<ul class="news_feed news_feed_post">	
     <li><h1><%= link_to blog.title, blog %></h1></li>
@@ -21,6 +23,7 @@
 	
 </li>
 <% end %>
+<%= paginate @blogs %>
 </ul>
 
 
