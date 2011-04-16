@@ -1,3 +1,15 @@
+/* @override http://localhost:3000/stylesheets/custom.css?1302955196 */
+
+/* @override http://localhost:3000/stylesheets/custom.css?1302954310 */
+
+/* @override http://localhost:3000/stylesheets/custom.css?1302954189 */
+
+/* @override http://localhost:3000/stylesheets/custom.css?1302953847 */
+
+/* @override http://localhost:3000/stylesheets/custom.css?1302922909 */
+
+/* @override http://localhost:3000/stylesheets/custom.css?1302922909 */
+
 /* @override http://localhost:3000/stylesheets/custom.css?1302922760 */
 
 /* @override http://localhost:3000/stylesheets/custom.css?1302917243 */
@@ -51,8 +63,10 @@ section {
 p, h3, h4 {
 	color: #eee;
 }
+input#mce-EMAIL.required.email{
+	width: 316px}
 
-input#blog_title, textarea#blog_content, input#gig_name, textarea#gig_address, input#gig_lat, input#gig_lng {
+input#blog_title, textarea#blog_content, input#gig_name, textarea#gig_address, input#gig_lat, input#gig_lng, input#mce-EMAIL.required.email {
 	background-color: #222;
 	border: 3px solid #444;
 	color: #eee;
@@ -62,14 +76,16 @@ input#blog_title, textarea#blog_content, input#gig_name, textarea#gig_address, i
   border-radius:         5px;
 	
 }
-input#blog_title:focus, textarea#blog_content:focus, input#gig_name:focus, textarea#gig_address:focus, input#gig_lat:focus, input#gig_lng:focus {
+input#blog_title:focus, textarea#blog_content:focus, input#gig_name:focus, textarea#gig_address:focus, input#gig_lat:focus, input#gig_lng:focus, input#mce-EMAIL.required.email:focus {
 	border: 3px solid #777;
 }
-input#blog_title:hover, textarea#blog_content:hover, input#gig_name:hover, textarea#gig_address:hover, input#gig_lat:hover, input#gig_lng:hover {
+input#blog_title:hover, textarea#blog_content:hover, input#gig_name:hover, textarea#gig_address:hover, input#gig_lat:hover, input#gig_lng:hover, input#mce-EMAIL.required.email:hover {
 	border: 3px solid #777;
 }
 
-input#blog_submit, input#gig_submit {
+
+
+input#blog_submit, input#gig_submit, input#mc-embedded-subscribe.btn {
 	background-color: #222;
 	border: 3px solid #444;
 	color: #eee;
@@ -82,12 +98,12 @@ input#blog_submit, input#gig_submit {
 label {
 	color: #eee;
 }
-input#blog_submit:hover, input#gig_submit:hover {
+input#blog_submit:hover, input#gig_submit:hover, input#mc-embedded-subscribe.btn:hover {
 	background-color: #111;
 	border: 3px solid #666;
 	color: #0358b6;
 }
-input#blog_submit:visited, input#gig_submit:visited {
+input#blog_submit:visited, input#gig_submit:visited, input#mc-embedded-subscribe.btn:visited {
 	background-color: #222;
 	border: 3px solid #444;
 	color: #eee;
@@ -108,6 +124,9 @@ section h1 {
 	position:absolute;
 	right: 0px;
 	top: 0px;
+	display: inline-block;
+	text-align: right;
+	padding-right: 5px;
 }
 
 div.admin_options_gig {
@@ -120,9 +139,48 @@ div.admin_options_gig {
 p#notice {
 	width: 750px;
 	height:1.5em;
-	padding: 10px;
+	padding: 5px 5px 0;
 	
 }
+
+div#mailchimp_signup {
+	position: absolute;
+	left: 0;
+	top: 520px;
+}
+
+#mc-embedded-subscribe-form fieldset {
+	border-style: none;
+	width: 332px;
+	margin: 0;padding: 0;
+}
+
+#mc-embedded-subscribe-form fieldset legend {
+	margin: 0;padding: 0;
+}
+
+div.mailinglist_admin_options {
+	position:absolute;
+	right: 0px;
+	top: 3px;
+	
+}
+
+#mc-embedded-subscribe-form fieldset legend span {
+	
+	color: #0358b6;
+	background-color: #111;
+	padding-right: 2px;
+	padding-left: 2px;
+	font-size: 1.5em;
+	font-weight: normal;
+	font-style: normal;
+}
+
+#mc-embedded-subscribe-form fieldset div.indicate-required {
+	color: #eee;
+}
+
 
 
 ul.news_feed {
@@ -159,8 +217,8 @@ ul.gigs_feed_gig {
 	padding-right: 10px;
 	padding-top: 10px;
 	padding-bottom: 20px;
-	margin-bottom: 10px;
 }
+
 ul.gigs_feed_gig h2{
 	margin:0;
 	padding:0;
@@ -320,8 +378,14 @@ div#home_art {
 nav.pagination {
 	width: auto;
 	padding-left: 10px;
+	color: #eee;
 }
 
-span.page.current {
+span.page.current,  {
 	color: #eee;
+}
+
+div#mce-success-response.response {
+	color: #eee;
+	padding: 3px;
 }

@@ -4,6 +4,7 @@ class BlogsController < ApplicationController
   def index
     @head_title = "News"
     #@blogs = Blog.page(1)
+    @all_blogs = Blog.all
     @blogs = Blog.order("id DESC").page(params[:page]).per(5)
     
     
@@ -11,6 +12,7 @@ class BlogsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @blogs }
+      format.rss { render :layout => false } #index.rss.builder
     end
   end
 

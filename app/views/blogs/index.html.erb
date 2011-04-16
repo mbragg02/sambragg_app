@@ -1,11 +1,17 @@
 <div id="home_art">
 	<%= image_tag("home_art.jpg", :alt => "Home art") %>
 </div>
-
+<div id="mailchimp_signup">
+	<div class="mailinglist_admin_options">
+	<%= link_to "[config]", "https://login.mailchimp.com/"%>
+	</div>
+	<%= render "mailchimp_signup"%>
+</div>
 <ul class="news_feed">
 	<h1>News</h1>
 	<div class="admin_options">
 		<h4><%= link_to '[New Post]', new_blog_path %></h4>
+		<%= link_to "[rss]", rss_link %>
 	</div>
 	
 	<%= paginate @blogs %>
