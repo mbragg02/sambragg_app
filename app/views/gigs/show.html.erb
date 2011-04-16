@@ -1,5 +1,5 @@
 <div id="gig_listing">
-	<h1><%= link_to 'Gig listing', gigs_path %> / <b><%= @gig.name %></b> <%= link_to '[edit]', edit_gig_path(@gig) %></h1>
+	<h1><%= link_to 'Gig listing', gigs_path %> / <b><%= @gig.name %></b> <% if admin? %><%= link_to '[edit]', edit_gig_path(@gig) %><% end %></h1>
 	<h3><%= @gig.address %></h3>
 	<h3><%= @gig.gigdate.strftime("%A %d %b %Y") %></h3>
 	<h3>@<%= @gig.gigdate.strftime("%I:%M %p") %></h3>

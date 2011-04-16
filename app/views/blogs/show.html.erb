@@ -1,4 +1,4 @@
-<h1><%= link_to 'News', root_path %> / <b><%= @blog.title %></b> <%= link_to '[edit]', edit_blog_path(@blog) %></h1>	
+<h1><%= link_to 'News', root_path %> / <b><%= @blog.title %></b> <% if admin? %><%= link_to '[edit]', edit_blog_path(@blog) %><% end %></h1>	
 <h3><%= @blog.created_at.strftime("%A %d %b %Y") %></h3>
 <p><%= simple_format(auto_link(@blog.content)) %></p>
 <%= render 'blogs/social_links' %>

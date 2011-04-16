@@ -1,3 +1,7 @@
+/* @override http://localhost:3000/stylesheets/custom.css?1302971668 */
+
+/* @override http://localhost:3000/stylesheets/custom.css?1302961141 */
+
 /* @override http://localhost:3000/stylesheets/custom.css?1302955196 */
 
 /* @override http://localhost:3000/stylesheets/custom.css?1302954310 */
@@ -66,7 +70,7 @@ p, h3, h4 {
 input#mce-EMAIL.required.email{
 	width: 316px}
 
-input#blog_title, textarea#blog_content, input#gig_name, textarea#gig_address, input#gig_lat, input#gig_lng, input#mce-EMAIL.required.email {
+input#blog_title, textarea#blog_content, input#gig_name, textarea#gig_address, input#gig_lat, input#gig_lng, input#mce-EMAIL.required.email, input#admin_login_password {
 	background-color: #222;
 	border: 3px solid #444;
 	color: #eee;
@@ -76,16 +80,20 @@ input#blog_title, textarea#blog_content, input#gig_name, textarea#gig_address, i
   border-radius:         5px;
 	
 }
-input#blog_title:focus, textarea#blog_content:focus, input#gig_name:focus, textarea#gig_address:focus, input#gig_lat:focus, input#gig_lng:focus, input#mce-EMAIL.required.email:focus {
+
+
+input#blog_title:focus, textarea#blog_content:focus, input#gig_name:focus, textarea#gig_address:focus, input#gig_lat:focus, input#gig_lng:focus, input#mce-EMAIL.required.email:focus, input#admin_login_password:focus {
 	border: 3px solid #777;
 }
-input#blog_title:hover, textarea#blog_content:hover, input#gig_name:hover, textarea#gig_address:hover, input#gig_lat:hover, input#gig_lng:hover, input#mce-EMAIL.required.email:hover {
+input#blog_title:hover, textarea#blog_content:hover, input#gig_name:hover, textarea#gig_address:hover, input#gig_lat:hover, input#gig_lng:hover, input#mce-EMAIL.required.email:hover, input#admin_login_password:hover {
 	border: 3px solid #777;
 }
 
 
 
-input#blog_submit, input#gig_submit, input#mc-embedded-subscribe.btn {
+
+
+input#blog_submit, input#gig_submit, input#mc-embedded-subscribe.btn, input#admin_login_input {
 	background-color: #222;
 	border: 3px solid #444;
 	color: #eee;
@@ -98,12 +106,12 @@ input#blog_submit, input#gig_submit, input#mc-embedded-subscribe.btn {
 label {
 	color: #eee;
 }
-input#blog_submit:hover, input#gig_submit:hover, input#mc-embedded-subscribe.btn:hover {
+input#blog_submit:hover, input#gig_submit:hover, input#mc-embedded-subscribe.btn:hover, input#admin_login_input:hover {
 	background-color: #111;
 	border: 3px solid #666;
 	color: #0358b6;
 }
-input#blog_submit:visited, input#gig_submit:visited, input#mc-embedded-subscribe.btn:visited {
+input#blog_submit:visited, input#gig_submit:visited, input#mc-embedded-subscribe.btn:visited, input#admin_login_input:visited {
 	background-color: #222;
 	border: 3px solid #444;
 	color: #eee;

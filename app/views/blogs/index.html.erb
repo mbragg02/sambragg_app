@@ -2,17 +2,27 @@
 	<%= image_tag("home_art.jpg", :alt => "Home art") %>
 </div>
 <div id="mailchimp_signup">
-	<div class="mailinglist_admin_options">
-	<%= link_to "[config]", "https://login.mailchimp.com/"%>
-	</div>
+	
+	<% if admin? %>
+	<%= link_to "[Logout]", logout_path %>
+	<%= link_to "[config mailinglist]", "https://login.mailchimp.com/"%>
+	<% else %>
+	<%= link_to "[login]", login_path %>
+	
+	<% end %>
+	<%= link_to "[rss]", rss_link %>
+
 	<%= render "mailchimp_signup"%>
 </div>
 <ul class="news_feed">
 	<h1>News</h1>
+	<p id="notice"><%= notice %></p>
+	
+	<% if admin? %>
 	<div class="admin_options">
 		<h4><%= link_to '[New Post]', new_blog_path %></h4>
-		<%= link_to "[rss]", rss_link %>
 	</div>
+	<% end %>
 	
 	<%= paginate @blogs %>
 <% @blogs.each do |blog| %>
@@ -21,10 +31,12 @@
     <li><h1><%= link_to blog.title, blog %></h1></li>
 	<li><h4><%= blog.created_at.strftime("%A %d %b %Y") %></h4></li>
     <li><p><%= simple_format(auto_link(blog.content)) %></p></li>
+	<% if admin? %>
 	<div class="admin_options">
 		<h4><%= link_to '[Edit]', edit_blog_path(blog) %>
 	    <%= link_to '[Destroy]', blog, :confirm => 'Are you sure?', :method => :delete %></h4>
 	</div>
+	<% end%>
 	</ul>
 	
 </li>

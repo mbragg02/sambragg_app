@@ -1,4 +1,8 @@
 class GigsController < ApplicationController
+  
+  before_filter :authorize, :except => [:index, :show]
+  
+  
   # GET /gigs
   # GET /gigs.xml
   def index
