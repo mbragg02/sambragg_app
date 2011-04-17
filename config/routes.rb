@@ -3,11 +3,14 @@ SambraggApp::Application.routes.draw do
   resources :gigs
 
   resources :blogs
+
   match 'about' => 'about#index'
 
   resources :sessions
   match 'login', :controller => 'sessions', :action => 'new'
   match 'logout', :controller => 'sessions', :action => 'destroy'
+  
+  
 
 
   # The priority is based upon order of creation:

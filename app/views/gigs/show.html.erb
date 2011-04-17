@@ -1,3 +1,9 @@
+<% flash.each do |key, msg| %>
+    <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_#{key}" %>
+    <%= content_tag :script, :type => "text/javascript" do -%>
+        setTimeout("new Effect.Fade('notice_<%= key %>');", 1500);
+    <% end %>
+<% end %>
 <div id="gig_listing">
 	<h1><%= link_to 'Gig listing', gigs_path %> / <b><%= @gig.name %></b> <% if admin? %><%= link_to '[edit]', edit_gig_path(@gig) %><% end %></h1>
 	<h3><%= @gig.address %></h3>
@@ -8,7 +14,6 @@
 </div>
 <%= render 'blogs/social_links' %>
 
-<p id="notice"><%= notice %></p>
 
 <div class="map_container round">
 <div id="map_canvas" style="width:100%; height:300px"></div>

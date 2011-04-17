@@ -17,6 +17,7 @@ class BlogsController < ApplicationController
       format.rss { render :layout => false } #index.rss.builder
     end
   end
+  
 
   # GET /blogs/1
   # GET /blogs/1.xml

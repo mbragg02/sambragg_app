@@ -1,4 +1,12 @@
+<div id="login_errors">
+	<% flash.each do |key, msg| %>
+	    <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_#{key}" %>
+	    <%= content_tag :script, :type => "text/javascript" do -%>
+	        setTimeout("new Effect.Fade('notice_<%= key %>');", 1500);
+	    <% end %>
+	<% end %>
+</div>
 <div class="admin_login_page">
-	<p id="notice"><%= notice %></p>
+
 	<%= render "login_form" %>
 </div>

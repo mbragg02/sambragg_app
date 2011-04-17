@@ -7,27 +7,24 @@ class GigsController < ApplicationController
   # GET /gigs.xml
   def index
     @head_title = "Gigs"
-    now = DateTime.now
-    all_gigs = Gig.all
-    
-   # @blogs = Blog.order("id DESC").page(params[:page]).per(5)
-  # ('gigdate <=?', DateTime.now)
-   
-   
-   #@all_gigs = Gig.page(params[:page]).per(5).order("id DESC")
-   @old_gigs = Gig.page(params[:page]).per(5).order("id DESC").where('gigdate <=?', DateTime.now)
-    
-    
-   # @old_gigs = Gig.find(:all,
-    #:conditions => ['gigdate <=?', DateTime.now]) 
-    
-    
+    @all_gigs = Gig.all
+    @old_gigs = Gig.page(params[:page]).per(5).order("id DESC").where('gigdate <=?', DateTime.now)
     @new_gigs = Gig.find(:all,
     :conditions => ['gigdate > ?', DateTime.now]) 
+    
+    @points = []
+    
+    @all_gigs.each do |i|
+      lng = i.lng
+      lat = i.lat
+     
+      # Add each point to the points array 
+      @points << [lat,lng]	
+     end	
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => all_gigs }
+      format.xml  { render :xml => @all_gigs }
     end
   end
 

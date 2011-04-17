@@ -1,19 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>sambragg.co.uk | <%= @head_title %></title>
+  <title>Sam Bragg | <%= @head_title %></title>
 
   <%= render 'layouts/stylesheets' %>
-  <%#= javascript_include_tag :defaults %>
+  <%#= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
+  <%= javascript_include_tag :defaults %>
+  <%#= javascript_include_tag "lightbox.js" %>
   <%= csrf_meta_tag %>
   <%= auto_discovery_link_tag(:rss, rss_link) %>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=1.4.2"></script>
-
-  <script src="javascripts/application.js"></script>
-
-  
-
 
 <script type="text/javascript"
     src="http://maps.google.com/maps/api/js?sensor=false">
@@ -27,16 +22,18 @@
 			
 			
 		</header>
-		<nav class="round">
+		<nav>
 			<ul>
-				<li><%= link_to "News", root_path %></li>
-				<li><%= link_to "About", about_path %></li>
-   				<li><%= link_to "Gigs", gigs_path %></li>
-				<li><%= link_to "Music", '#' %></li>
-				<li><%= link_to "Photos", '#' %></li>
-				<li><%= link_to "Contact", '#' %></li>
+				<li<%= " class='selected'" if current_controller?("blogs") %>><%= link_to "News", root_path %></li>
+				<li<%= " class='selected'" if current_controller?("about") %>><%= link_to "About", about_path %></li>
+   				<li<%= " class='selected'" if current_controller?("gigs") %>><%= link_to "Gigs", gigs_path %></li>
+				<li<%= " class='selected'" if current_controller?("music") %>><%= link_to "Music", '#' %></li>
+				<li<%= " class='selected'" if current_controller?("photos") %>><%= link_to "Photos", '#' %></li>
+				<li<%= " class='selected'" if current_controller?("contact") %>><%= link_to "Contact", '#' %></li>
 			</ul>
 		</nav>
+		
+		
 		<section class="round">
 			<%= yield %>
 		</section>

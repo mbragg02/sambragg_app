@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   def create
     session[:admin_login_password] = params[:admin_login_password]
     unless admin?
-      redirect_to(login_path, :notice => 'unauthorized access')
+      redirect_to(login_path, :alert => 'unauthorized access')
     else
     redirect_to(root_path, :notice => 'Successfully logged in')
   end

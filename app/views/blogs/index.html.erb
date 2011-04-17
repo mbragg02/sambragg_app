@@ -6,9 +6,8 @@
 	<% if admin? %>
 	<%= link_to "[Logout]", logout_path %>
 	<%= link_to "[config mailinglist]", "https://login.mailchimp.com/"%>
-	<% else %>
-	<%= link_to "[login]", login_path %>
-	
+	<% else %>	
+	<%= link_to '[login]', login_path %>
 	<% end %>
 	<%= link_to "[rss]", rss_link %>
 
@@ -16,8 +15,14 @@
 </div>
 <ul class="news_feed">
 	<h1>News</h1>
-	<p id="notice"><%= notice %></p>
 	
+	<% flash.each do |key, msg| %>
+	    <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_#{key}" %>
+	    <%= content_tag :script, :type => "text/javascript" do -%>
+	        setTimeout("new Effect.Fade('notice_<%= key %>');", 1500);
+	    <% end %>
+	<% end %>
+		
 	<% if admin? %>
 	<div class="admin_options">
 		<h4><%= link_to '[New Post]', new_blog_path %></h4>
