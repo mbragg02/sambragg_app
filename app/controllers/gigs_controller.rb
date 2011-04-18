@@ -11,16 +11,6 @@ class GigsController < ApplicationController
     @old_gigs = Gig.page(params[:page]).per(4).order("id DESC").where('gigdate <=?', DateTime.now)
     @new_gigs = Gig.find(:all,
     :conditions => ['gigdate > ?', DateTime.now]) 
-    
-    @points = []
-    
-    @all_gigs.each do |i|
-      lng = i.lng
-      lat = i.lat
-     
-      # Add each point to the points array 
-      @points << [lat,lng]	
-     end	
 
     respond_to do |format|
       format.html # index.html.erb
