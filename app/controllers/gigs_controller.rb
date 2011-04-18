@@ -2,8 +2,6 @@ class GigsController < ApplicationController
   
   before_filter :authorize, :except => [:index, :show]
   
-    require 'open-uri'
-    require 'json'
   
   # GET /gigs
   # GET /gigs.xml
@@ -85,6 +83,9 @@ class GigsController < ApplicationController
   # POST /gigs
   # POST /gigs.xml
   def create
+    
+    require 'open-uri'
+    require 'json'
      
       
     @gig = Gig.new(params[:gig])
@@ -112,6 +113,9 @@ class GigsController < ApplicationController
   # PUT /gigs/1
   # PUT /gigs/1.xml
   def update
+    
+    require 'open-uri'
+    require 'json'
     
 
       
