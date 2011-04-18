@@ -2,7 +2,8 @@ class GigsController < ApplicationController
   
   before_filter :authorize, :except => [:index, :show]
   
-    
+    require 'open-uri'
+    require 'json'
   
   # GET /gigs
   # GET /gigs.xml
