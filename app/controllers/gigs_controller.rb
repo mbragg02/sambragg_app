@@ -27,6 +27,7 @@ class GigsController < ApplicationController
       format.xml  { render :xml => @all_gigs }
     end
   end
+  
 
   # GET /gigs/1
   # GET /gigs/1.xml

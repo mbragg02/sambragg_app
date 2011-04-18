@@ -6,9 +6,11 @@
  *
  *--------------------------------------------------------------------------*/
 
+
 var Prototype = {
 
   Version: '1.7_rc2',
+
 
   Browser: (function(){
     var ua = navigator.userAgent;

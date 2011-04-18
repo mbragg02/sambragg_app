@@ -1,4 +1,5 @@
 <%#= @time.strftime("%A %d %b %Y @ %I:%M %p")  %>
+
 <div id="upcoming_gigs">
 <ul class="gigs_feed">
 	<% if @new_gigs.blank? %> 
@@ -9,7 +10,9 @@
 		</div>
 		<% end %>
 		<% else%>
+		
 		<h1><span class="text_shadow">Upcoming gigs</span></h1>
+		
 		<% if admin? %>
 		<div class="admin_options">
 			<h4><%= link_to '[New Gig]', new_gig_path %></h4>
@@ -22,18 +25,25 @@
 		<li><h2><%= link_to gig.name, gig %></h2></li>
 		<li><h4><%= gig.gigdate.strftime("%A %d %b %Y @ %I:%M %p") %></h4></li>
 		<li><p><%= gig.address %></p></li>
+		
+	
+		
 		<% if admin? %>
 		<div class="admin_options_gig">
 			<h4><%= link_to '[Edit]', edit_gig_path(gig) %></h4>
     		<h4><%= link_to '[Destroy]', gig, :confirm => 'Are you sure?', :method => :delete %></h4>
 		</div>
 		<% end %>
+		
 		</ul>
 		</li>
 		<% end %>
 	<% end %>
-	</ul>
+</ul>
 </div>
+
+
+
 
 <div id="past_gigs">
 	<ul class="gigs_feed">
@@ -62,5 +72,6 @@
 
 </ul>
 </div>
+
 
 
