@@ -8,7 +8,7 @@ class GigsController < ApplicationController
   def index
     @head_title = "Gigs"
     @all_gigs = Gig.all
-    @old_gigs = Gig.page(params[:page]).per(5).order("id DESC").where('gigdate <=?', DateTime.now)
+    @old_gigs = Gig.page(params[:page]).per(4).order("id DESC").where('gigdate <=?', DateTime.now)
     @new_gigs = Gig.find(:all,
     :conditions => ['gigdate > ?', DateTime.now]) 
     

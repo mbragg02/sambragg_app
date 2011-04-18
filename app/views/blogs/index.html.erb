@@ -14,7 +14,7 @@
 	<%= render "mailchimp_signup"%>
 </div>
 <ul class="news_feed">
-	<h1>News</h1>
+	<h1><span class="text_shadow">News</span></h1>
 	
 	<% flash.each do |key, msg| %>
 	    <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_#{key}" %>

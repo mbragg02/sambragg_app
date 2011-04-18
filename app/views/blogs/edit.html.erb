@@ -1,5 +1,6 @@
-<h1><%= link_to 'News', root_path %> / <b>editing</b> <%= link_to @blog.title, @blog %></h1>
-
+<h1><%= link_to 'News', root_path %><span class="text_shadow"> / <b>edit</b></span> <%= link_to @blog.title, @blog %></h1>
+<div id="post_listing">
 <%= render 'form' %>
+</div>
 
 

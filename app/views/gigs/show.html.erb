@@ -4,14 +4,14 @@
         setTimeout("new Effect.Fade('notice_<%= key %>');", 1500);
     <% end %>
 <% end %>
-<div id="gig_listing">
-	<h1><%= link_to 'Gig listing', gigs_path %> / <b><%= @gig.name %></b> <% if admin? %><%= link_to '[edit]', edit_gig_path(@gig) %><% end %></h1>
+	<h1><%= link_to 'Gig listing', gigs_path %><span class="text_shadow"> / <b><%= @gig.name %></b></span> <% if admin? %><%= link_to '[edit]', edit_gig_path(@gig) %><% end %></h1>
+	<div id="gig_listing">
+		<h3><%= @gig.gigdate.strftime("%A %d %b %Y @ %I:%M %p") %></h3>
+	
 	<h3><%= @gig.address %></h3>
-	<h3><%= @gig.gigdate.strftime("%A %d %b %Y") %></h3>
-	<h3>@<%= @gig.gigdate.strftime("%I:%M %p") %></h3>
 	
 	
-</div>
+
 <%= render 'blogs/social_links' %>
 
 
@@ -19,6 +19,7 @@
 <div id="map_canvas" style="width:100%; height:300px"></div>
 </div>
 
+</div>
 
 
 <script type="text/javascript">

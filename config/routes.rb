@@ -1,4 +1,5 @@
 SambraggApp::Application.routes.draw do
+
   root :to => "blogs#index"
   resources :gigs
 
@@ -9,6 +10,12 @@ SambraggApp::Application.routes.draw do
   resources :sessions
   match 'login', :controller => 'sessions', :action => 'new'
   match 'logout', :controller => 'sessions', :action => 'destroy'
+  
+  #resources :contacts, :only => [:new, :create]
+  #match 'contacts', :controller => 'contacts', :action => 'new'
+  resources :contacts, :only => [:create]
+  match 'contact' => 'contacts#new'
+  
   
   
 

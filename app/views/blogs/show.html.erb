@@ -1,11 +1,15 @@
-<% flash.each do |key, msg| %>
-    <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_#{key}" %>
-    <%= content_tag :script, :type => "text/javascript" do -%>
-        setTimeout("new Effect.Fade('notice_<%= key %>');", 1500);
-    <% end %>
-<% end %>
-
-<h1><%= link_to 'News', root_path %> / <b><%= @blog.title %></b> <% if admin? %><%= link_to '[edit]', edit_blog_path(@blog) %><% end %></h1>	
+	<% flash.each do |key, msg| %>
+	    <%= content_tag :div, msg, :class => [key, " message"], :id => "notice_#{key}" %>
+	    <%= content_tag :script, :type => "text/javascript" do -%>
+	        setTimeout("new Effect.Fade('notice_<%= key %>');", 1500);
+	
+	
+	
+	    <% end %>
+	<% end %>
+<h1><%= link_to 'News', root_path %><span class="text_shadow"> / <b><%= @blog.title %></b></span> <% if admin? %><%= link_to '[edit]', edit_blog_path(@blog) %><% end %></h1>	
+<div id="post_listing">
 <h3><%= @blog.created_at.strftime("%A %d %b %Y") %></h3>
 <p><%= simple_format(auto_link(@blog.content)) %></p>
 <%= render 'blogs/social_links' %>
+</div>

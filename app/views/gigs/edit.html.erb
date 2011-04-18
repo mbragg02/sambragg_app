@@ -1,6 +1,7 @@
-<h1><%= link_to 'Gig listing', gigs_path %> / <b>editing</b> <%= link_to @gig.name, @gig %></h1>
-
+<h1><%= link_to 'Gig listing', gigs_path %><span class="text_shadow"> / <b>edit</b></span> <%= link_to @gig.name, @gig %></h1>
+<div id="gig_listing">
 <%= render 'form' %>
+</div>
 
 
 

@@ -7,7 +7,7 @@ class BlogsController < ApplicationController
     @head_title = "News"
     #@blogs = Blog.page(1)
     @all_blogs = Blog.all
-    @blogs = Blog.order("id DESC").page(params[:page]).per(5)
+    @blogs = Blog.order("id DESC").page(params[:page]).per(4)
     
     
     

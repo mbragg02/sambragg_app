@@ -1,15 +1,15 @@
 <%#= @time.strftime("%A %d %b %Y @ %I:%M %p")  %>
-
+<div id="upcoming_gigs">
 <ul class="gigs_feed">
 	<% if @new_gigs.blank? %> 
-		<h1>No upcoming gigs</h1>
+		<h1><span class="text_shadow">No upcoming gigs</span></h1>
 		<% if admin? %>
 		<div class="admin_options">
 			<h4><%= link_to '[New Gig]', new_gig_path %></h4>
 		</div>
 		<% end %>
 		<% else%>
-		<h1>Upcoming gigs</h1>
+		<h1><span class="text_shadow">Upcoming gigs</span></h1>
 		<% if admin? %>
 		<div class="admin_options">
 			<h4><%= link_to '[New Gig]', new_gig_path %></h4>
@@ -24,17 +24,23 @@
 		<li><p><%= gig.address %></p></li>
 		<% if admin? %>
 		<div class="admin_options_gig">
-			<h4><%= link_to '[Edit]', edit_gig_path(gig) %>
-    		<%= link_to '[Destroy]', gig, :confirm => 'Are you sure?', :method => :delete %></h4>
+			<h4><%= link_to '[Edit]', edit_gig_path(gig) %></h4>
+    		<h4><%= link_to '[Destroy]', gig, :confirm => 'Are you sure?', :method => :delete %></h4>
 		</div>
 		<% end %>
 		</ul>
 		</li>
 		<% end %>
 	<% end %>
-<br />
+	</ul>
+</div>
 
-<h1>Past gigs</h1>
+<div id="past_gigs">
+	<ul class="gigs_feed">
+	
+
+
+<h1><span class="text_shadow">Past gigs</span></h1>
 
 <%= paginate @old_gigs %>
 <% @old_gigs.each do |gig| %>
@@ -45,8 +51,8 @@
     <li><p><%= gig.address %></p></li>
     <% if admin? %>
 	<div class="admin_options_gig">
-		<h4><%= link_to '[Edit]', edit_gig_path(gig) %>
-	    <%= link_to '[Destroy]', gig, :confirm => 'Are you sure?', :method => :delete %></h4>
+		<h4><%= link_to '[Edit]', edit_gig_path(gig) %></h4>
+	    <h4><%= link_to '[Destroy]', gig, :confirm => 'Are you sure?', :method => :delete %></h4>
 	</div>
 	<% end %>
 	</ul>
@@ -55,6 +61,6 @@
 <%= paginate @old_gigs %>
 
 </ul>
-<br />
+</div>
 
 
