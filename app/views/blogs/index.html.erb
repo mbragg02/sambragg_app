@@ -50,7 +50,7 @@
 		<h4><%= link_to '[New Post]', new_blog_path %></h4>
 	</div>
 	<% end %>
-	
+	<div id="rssLink"><%= link_to "[rss]", rss_link %></div>
 	<div id="paginator">
 	  	<%= paginate @blogs, :remote => true %>
 	</div>

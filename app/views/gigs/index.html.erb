@@ -7,34 +7,26 @@
 	
 <div id="upcoming_gigs">	
 <ul class="gigs_feed">	
-	<% if @new_gigs.blank? %> 
-		<h1><span class="text_shadow">No upcoming gigs</span></h1>
+	
+		<h1><span class="text_shadow">Upcoming gigs</span></h1>
 		<div id="paginator_dummy">
+			
 			<%#= paginate @new_gigs %>
 			
 		  	<%#= paginate @new_gigs, :remote => true %>
 		</div>
+		<% if admin? %>
+		<div class="admin_options">
+			<h4><%= link_to '[New Gig]', new_gig_path %></h4>
+		</div>
+		<% end %>
+		<% if @new_gigs.blank? %> 
 		<br>
-		<h3>Why not join the mailing list to find out about future gig...</h3>
-		<%= render "blogs/mailchimp_signup"%>
+		<h3>None at this time. Make a <%= link_to "Booking", contact_path %></h3>
 		
-		<% if admin? %>
-		<div class="admin_options">
-			<h4><%= link_to '[New Gig]', new_gig_path %></h4>
-		</div>
+		<%#= render "blogs/mailchimp_signup"%>
 		<% end %>
-	<% else%>		
-		<h1><span class="text_shadow">Upcoming gigs</span></h1>		
-		<% if admin? %>
-		<div class="admin_options">
-			<h4><%= link_to '[New Gig]', new_gig_path %></h4>
-		</div>
-		<% end %>
-		<div id="paginator_dummy">
-			<%#= paginate @new_gigs %>
-			
-		  	<%#= paginate @new_gigs, :remote => true %>
-		</div>
+	
 		
 	
 		<% @new_gigs.reverse.each do |gig| %>
@@ -53,14 +45,13 @@
 		</li>
 		<% end %> <%# end new gigs list block %>
 		
-	<% end %>
 </ul>
 </div> <%# end upcoming gigs %>
 
 <div id="past_gigs">
 <ul class="gigs_feed">
 <h1><span class="text_shadow">Past gigs</span></h1>
-<button id="gig_map_toggle_button">Map View</button>
+<button id="gig_map_toggle_button">Map</button>
 
 
 <%#= paginate @old_gigs %>
@@ -108,7 +99,7 @@
 			
 	function jsonparse() {
 		var locations = new Array(); 
-		$.getJSON('http://localhost:3000/gigs.json', function(data){ 
+		$.getJSON('gigs.json', function(data){ 
 			//console.log(data)
 		        $.each(data, function(i, gig){ 	
 				var lat = data[i].gig.lat;

@@ -16,8 +16,8 @@ class GigsController < ApplicationController
     
 
     respond_to do |format|
-      format.js 
       format.html # index.html.erb
+      format.js {render :content_type => 'text/javascript'}
       format.xml  { render :xml => @all_gigs }
       format.json  { render :json => (@all_gigs) }
     end
