@@ -1,6 +1,7 @@
 class GigsController < ApplicationController
   
   before_filter :authorize, :except => [:index, :show]
+  #respond_to :js
   
   
   # GET /gigs
@@ -9,15 +10,21 @@ class GigsController < ApplicationController
     @head_title = "Gigs"
     @all_gigs = Gig.all
     @old_gigs = Gig.page(params[:page]).per(4).order("id DESC").where('gigdate <=?', DateTime.now)
-    @new_gigs = Gig.find(:all,
-    :conditions => ['gigdate > ?', DateTime.now]) 
+    #@new_gigs = Gig.page(params[:page]).per(4).order("id DESC").where('gigdate >?', DateTime.now)
+    
+    @new_gigs = Gig.find(:all, :conditions => ['gigdate >?', DateTime.now]) 
+    
 
     respond_to do |format|
+      format.js 
       format.html # index.html.erb
       format.xml  { render :xml => @all_gigs }
+      format.json  { render :json => (@all_gigs) }
     end
   end
   
+  
+
 
   # GET /gigs/1
   # GET /gigs/1.xml

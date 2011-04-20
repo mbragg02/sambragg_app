@@ -1,0 +1,15 @@
+<% @old_gigs.each do |gig| %>
+	<li>
+	<ul class="gigs_feed_gig <%= cycle('list-line-even', 'list-line-odd') %>">		
+	<li><h2><%= link_to gig.name, gig %></h2></li>
+	<li><h4><%= gig.gigdate.strftime("%A %d %b %Y @ %I:%M %p") %></h4></li>
+    <li><p><%= gig.address %></p></li>
+    <% if admin? %>
+	<div class="admin_options_gig">
+		<h4><%= link_to '[Edit]', edit_gig_path(gig) %></h4>
+	    <h4><%= link_to '[Destroy]', gig, :confirm => 'Are you sure?', :method => :delete %></h4>
+	</div>
+	<% end %>
+	</ul>
+	</li>
+<% end %>

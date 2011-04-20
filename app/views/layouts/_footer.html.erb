@@ -1,11 +1,10 @@
 <footer>
-  <nav class="round">
-    <ul>
-      <li><%= link_to "Legal", '#' %></li>
-      <li><%= link_to "help", '#' %></li>
-      <li><%= link_to "Login", '#' %></li>
-
-
-    </ul>
-  </nav>
+	<div id="footer_section">
+		<div id="legal">
+			<p>Copyright &copy; <%= timenow.strftime("%Y") %> Sam Bragg. All Rights Reserved</p>
+		</div>
+		<div id="siteby">
+			<p>site by <%= mail_to "mike.a.bragg@gmail.com", 'mbragg' %></p>
+		</div>
+</div>
 </footer>

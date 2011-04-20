@@ -12,5 +12,7 @@
 <h3><%= @blog.created_at.strftime("%A %d %b %Y") %></h3>
 <p><%= simple_format(auto_link(@blog.content)) %></p>
 <%= render 'blogs/social_links' %>
-<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=APP_ID&amp;xfbml=1"></script><fb:comments href="<%= blog_url %>" num_posts="2" width="500" colorscheme="dark"></fb:comments>
+
+<div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=APP_ID&amp;xfbml=1"></script><fb:comments href="<%= blog_url %>" num_posts="2" width="500" colorscheme="light" style="background-color:#eee;"></fb:comments>
 </div>
+

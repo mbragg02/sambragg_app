@@ -1,0 +1,3 @@
+$('#newsfeed_div').html('<%= escape_javascript render("newsfeed") %>');
+
+$('#paginator').html('<%= escape_javascript(paginate(@blogs, :remote => true).to_s) %>');

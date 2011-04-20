@@ -2,10 +2,12 @@ SambraggApp::Application.routes.draw do
 
   root :to => "blogs#index"
   resources :gigs
-
+  match 'points' => 'gigs#listpoints'
+  
   resources :blogs
 
   match 'about' => 'about#index'
+  match 'photos' => 'photos#index'
 
   resources :sessions
   match 'login', :controller => 'sessions', :action => 'new'

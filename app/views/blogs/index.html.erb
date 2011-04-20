@@ -1,18 +1,40 @@
+<div id="news_left">
 <div id="home_art">
 	<%= image_tag("home_art.jpg", :alt => "Home art") %>
 </div>
 <div id="mailchimp_signup">
 	
 	<% if admin? %>
-	<%= link_to "[Logout]", logout_path %>
-	<%= link_to "[config mailinglist]", "https://login.mailchimp.com/"%>
+	<%= link_to "[logout]", logout_path %>
+	<%= link_to "[create mailinglist]", "https://login.mailchimp.com/"%>
 	<% else %>
-	<%= link_to '[login]', login_path %>
-	<% end %>
+	<%#= link_to '[login]', login_path %>
+	<%= link_to '[login]', "#", :id => "loginbutton", :remote => true %>
+	  <%# <button id="loginbutton">[login]</button> %>
 	<%= link_to "[rss]", rss_link %>
+	
 
-	<%= render "mailchimp_signup"%>
+	  
+	<script>
+	    $("#loginbutton").click(function () {
+	      $("#ajaxlogin").slideToggle("slow");
+	    });
+	</script>
+	
+	<div id="ajaxlogin">
+		<%= render "sessions/login_form"%>
+		
+	</div>
+	<% end %>
+	<div id="mailchimpForm">
+		<h1><span class="text_shadow">Join the mailing list</span></h1>
+		<%= render "mailchimp_signup"%>
+	</div>
 </div>
+</div> <%# end home left div %>
+
+
+<div id="news_right">
 <ul class="news_feed">
 	<h1><span class="text_shadow">News</span></h1>
 	
@@ -29,24 +51,18 @@
 	</div>
 	<% end %>
 	
-	<%= paginate @blogs %>
-<% @blogs.each do |blog| %>
-<li>
-	<ul class="news_feed news_feed_post">	
-    <li><h1><%= link_to blog.title, blog %></h1></li>
-	<li><h4><%= blog.created_at.strftime("%A %d %b %Y") %></h4></li>
-    <li><p><%= simple_format(auto_link(blog.content)) %></p></li>
-	<% if admin? %>
-	<div class="admin_options">
-		<h4><%= link_to '[Edit]', edit_blog_path(blog) %>
-	    <%= link_to '[Destroy]', blog, :confirm => 'Are you sure?', :method => :delete %></h4>
+	<div id="paginator">
+	  	<%= paginate @blogs, :remote => true %>
 	</div>
-	<% end%>
-	</ul>
-	
-</li>
-<% end %>
-<%= paginate @blogs %>
+	<div id="newsfeed_div">
+		<%= render :partial => "newsfeed" %>
+	  
+	<%#= render "newsfeed" %>
+	</div>
+
+
 </ul>
+</div>
+
 
 

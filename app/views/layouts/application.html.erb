@@ -4,18 +4,26 @@
   <title>Sam Bragg | <%= @head_title %></title>
 
   <%= render 'layouts/stylesheets' %>
-  <%#= stylesheet_link_tag 'lightview' %>
-  <%#= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" %>
-  <%= javascript_include_tag :defaults %>
-  <%#= javascript_include_tag 'lightview' %>
+  <%= stylesheet_link_tag 'jquery.lightbox-0.5' %>
+
+  <%#= javascript_include_tag :defaults %>
+<%#= javascript_include_tag "rails" %>
+  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" %>
+<%= javascript_include_tag "jquery.rails.js" %>
+<%= javascript_include_tag "application.js" %>
+<%= javascript_include_tag 'jquery.lightbox-0.5.js' %>
+
+
+
+<%= javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false&region=GB" %>
+<%#= javascript_include_tag "jquery.gmap-1.1.0-min.js" %>
+
+
    
   <%= csrf_meta_tag %>
   <%= auto_discovery_link_tag(:rss, rss_link) %>
 
-	
-	<script type="text/javascript"
-	    src="http://maps.google.com/maps/api/js?sensor=false">
-	</script>
+
 
 
 
@@ -23,6 +31,7 @@
 
 </head>
 <body onload="initialize()">
+	
 	<div class="container">
 		<header>
 			<%= link_to image_tag("sambragg_logo.png", :alt => "Sam Bragg"), root_path %>		
@@ -35,7 +44,7 @@
 				<li<%= " class='selected'" if current_controller?("about") %>><%= link_to "About", about_path %></li>
    				<li<%= " class='selected'" if current_controller?("gigs") %>><%= link_to "Gigs", gigs_path %></li>
 				<li<%= " class='selected'" if current_controller?("music") %>><%= link_to "Music", '#' %></li>
-				<li<%= " class='selected'" if current_controller?("photos") %>><%= link_to "Photos", '#' %></li>
+				<li<%= " class='selected'" if current_controller?("photos") %>><%= link_to "Photos", photos_path %></li>
 				<li<%= " class='selected'" if current_controller?("contacts") %>><%= link_to "Contact", contact_path %></li>
 			</ul>
 		</nav>
@@ -44,9 +53,13 @@
 		<section class="round">
 			<%= yield %>
 		</section>
-		<%#= render 'layouts/footer' %>
-			
+		
+		<%= render 'layouts/footer' %>
+		
+		
 	</div>
+	
+	
 
 
 </body>

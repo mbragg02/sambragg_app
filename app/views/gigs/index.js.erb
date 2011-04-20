@@ -1,0 +1,3 @@
+$('#gigs_feed_ajax_div').html('<%= escape_javascript render("gigsfeed") %>');
+
+$('#paginator').html('<%= escape_javascript(paginate(@old_gigs, :remote => true).to_s) %>');

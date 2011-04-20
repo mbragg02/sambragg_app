@@ -12,6 +12,7 @@ class BlogsController < ApplicationController
     
     
     respond_to do |format|
+      format.js
       format.html # index.html.erb
       format.xml  { render :xml => @blogs }
       format.rss { render :layout => false } #index.rss.builder

@@ -1,23 +1,41 @@
-<%#= @time.strftime("%A %d %b %Y @ %I:%M %p")  %>
+<div id="map_allgigs">
+	<div id="map" style="width:100%; height:300px"></div>
+</div>
+<%#= link_to "Toggle Map", "#", :controller => "gigs", :action => "index", :id => "mapbutton", :remote => true %>
 
-<div id="upcoming_gigs">
-<ul class="gigs_feed">
+<div id="gigs_all">
+	
+<div id="upcoming_gigs">	
+<ul class="gigs_feed">	
 	<% if @new_gigs.blank? %> 
 		<h1><span class="text_shadow">No upcoming gigs</span></h1>
+		<div id="paginator_dummy">
+			<%#= paginate @new_gigs %>
+			
+		  	<%#= paginate @new_gigs, :remote => true %>
+		</div>
+		<br>
+		<h3>Why not join the mailing list to find out about future gig...</h3>
+		<%= render "blogs/mailchimp_signup"%>
+		
 		<% if admin? %>
 		<div class="admin_options">
 			<h4><%= link_to '[New Gig]', new_gig_path %></h4>
 		</div>
 		<% end %>
-		<% else%>
-		
-		<h1><span class="text_shadow">Upcoming gigs</span></h1>
-		
+	<% else%>		
+		<h1><span class="text_shadow">Upcoming gigs</span></h1>		
 		<% if admin? %>
 		<div class="admin_options">
 			<h4><%= link_to '[New Gig]', new_gig_path %></h4>
 		</div>
 		<% end %>
+		<div id="paginator_dummy">
+			<%#= paginate @new_gigs %>
+			
+		  	<%#= paginate @new_gigs, :remote => true %>
+		</div>
+		
 	
 		<% @new_gigs.reverse.each do |gig| %>
 		<li>
@@ -25,53 +43,136 @@
 		<li><h2><%= link_to gig.name, gig %></h2></li>
 		<li><h4><%= gig.gigdate.strftime("%A %d %b %Y @ %I:%M %p") %></h4></li>
 		<li><p><%= gig.address %></p></li>
-		
-	
-		
 		<% if admin? %>
 		<div class="admin_options_gig">
 			<h4><%= link_to '[Edit]', edit_gig_path(gig) %></h4>
     		<h4><%= link_to '[Destroy]', gig, :confirm => 'Are you sure?', :method => :delete %></h4>
 		</div>
 		<% end %>
-		
 		</ul>
 		</li>
-		<% end %>
+		<% end %> <%# end new gigs list block %>
+		
 	<% end %>
 </ul>
-</div>
-
-
-
+</div> <%# end upcoming gigs %>
 
 <div id="past_gigs">
-	<ul class="gigs_feed">
-	
-
-
+<ul class="gigs_feed">
 <h1><span class="text_shadow">Past gigs</span></h1>
+<button id="gig_map_toggle_button">Map View</button>
 
-<%= paginate @old_gigs %>
-<% @old_gigs.each do |gig| %>
-	<li>
-	<ul class="gigs_feed_gig <%= cycle('list-line-even', 'list-line-odd') %>">		
-	<li><h2><%= link_to gig.name, gig %></h2></li>
-	<li><h4><%= gig.gigdate.strftime("%A %d %b %Y @ %I:%M %p") %></h4></li>
-    <li><p><%= gig.address %></p></li>
-    <% if admin? %>
-	<div class="admin_options_gig">
-		<h4><%= link_to '[Edit]', edit_gig_path(gig) %></h4>
-	    <h4><%= link_to '[Destroy]', gig, :confirm => 'Are you sure?', :method => :delete %></h4>
-	</div>
-	<% end %>
-	</ul>
-	</li>
-<% end %>
-<%= paginate @old_gigs %>
+
+<%#= paginate @old_gigs %>
+<div id="paginator">
+  	<%= paginate @old_gigs, :remote => true %>
+</div>
+
+<div id="gigs_feed_ajax_div">
+	<%= render "gigsfeed" %>
+</div>
 
 </ul>
 </div>
 
 
+</div> <%# end gigs all div %>
 
+
+
+
+
+<script type="text/javascript">
+					
+	function initialize() {
+	
+		var myLatlng = new google.maps.LatLng(54.361652,-1.424279);
+		 bounds = new google.maps.LatLngBounds();
+		
+	//	var myLatlng = new google.maps.LatLng(0,0);
+		
+	//	var infowindow = new google.maps.InfoWindow();
+		var infowindow = new google.maps.InfoWindow({
+						maxWidth: 50
+						});
+		
+		var myOptions = {
+		  zoom: 5,
+		  center: myLatlng,
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		}
+		
+		map = new google.maps.Map(document.getElementById("map"), myOptions);
+		jsonparse();
+	
+			
+	function jsonparse() {
+		var locations = new Array(); 
+		$.getJSON('http://localhost:3000/gigs.json', function(data){ 
+			//console.log(data)
+		        $.each(data, function(i, gig){ 	
+				var lat = data[i].gig.lat;
+				var lng = data[i].gig.lng;
+				var name = data[i].gig.name;
+				var address = data[i].gig.address;
+				var gigdate = data[i].gig.gigdate
+			    
+				locations.push([lat,lng, name, address, gigdate]);
+					//setMarkers(map, locations)
+		        });
+		
+				setMarkers(map, locations);
+		
+		});
+		
+		
+	}
+	
+	function setMarkers(map, locations) {
+		
+			for (var i = 0; i < locations.length; i++) {
+				
+				var gig = locations[i];
+				var gigLatLng = new google.maps.LatLng(gig[0], gig[1]);
+				var marker = createMarker(map, gigLatLng, gig[2], gig[3], gig[4]);
+				bounds.extend(gigLatLng);
+				map.fitBounds(bounds);
+			}
+			
+	}
+		
+	function createMarker(map, myLatLng, name, address, gigdate) {
+		
+			var contentString = 
+			'<div id="gmap_content">'+
+			'<b>'+name+'</b><br />'+address+'</div>';	
+		//	name+'</b><br />'+address+'<br />'+gigdate
+		//						'</div>';
+			
+			
+			var marker = new google.maps.Marker({
+			    position: myLatLng,
+			    map: map,
+			    title: name
+			});
+			
+			google.maps.event.addListener(marker, 'click', function() {
+				
+			  	infowindow.setContent(contentString);
+				   infowindow.open(map, marker);
+			});	
+		}
+		
+	}
+	
+	$(function() {
+	  	 $("#gig_map_toggle_button").click(function () {
+		     $("#map_allgigs").slideToggle("slow", function() {
+			});
+			    google.maps.event.trigger(map, 'resize');
+				map.fitBounds(bounds);
+		    });
+	});
+	
+
+</script>
