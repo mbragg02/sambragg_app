@@ -34,7 +34,7 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     i18n (0.5.0)
-    json (1.5.1)
+    json (1.5.5)
     kaminari (0.10.4)
       rails (>= 3.0.0)
     mail (2.2.15)
